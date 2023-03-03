@@ -56,6 +56,7 @@ class PrinterStats:
         self.stats_timer = reactor.register_timer(self.generate_stats)
         self.stats_cb = []
         self.printer.register_event_handler("klippy:ready", self.handle_ready)
+        logging.basicConfig(format="%(asctime)s [%(levelname)s] %(message)s")
     def handle_ready(self):
         self.stats_cb = [o.stats for n, o in self.printer.lookup_objects()
                          if hasattr(o, 'stats')]
